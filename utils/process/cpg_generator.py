@@ -8,6 +8,7 @@ from .cpg_client_wrapper import CPGClientWrapper
 #from ..data import datamanager as data
 
 
+'''
 def funcs_to_graphs(funcs_path):
     client = CPGClientWrapper()
     # query the cpg for the dataset
@@ -18,6 +19,7 @@ def funcs_to_graphs(funcs_path):
     graphs_json = json.loads(graphs_string)
 
     return graphs_json["functions"]
+'''
 
 
 def graph_indexing(graph):
@@ -26,6 +28,7 @@ def graph_indexing(graph):
     return idx, {"functions": [graph]}
 
 
+# Used in run.py
 def joern_parse(joern_path, input_path, output_path, file_name):
     out_file = file_name + ".bin"
     joern_parse_call = subprocess.run(["./" + joern_path + "joern-parse", input_path, "--output", output_path + out_file],
@@ -34,6 +37,7 @@ def joern_parse(joern_path, input_path, output_path, file_name):
     return out_file
 
 
+# Used in run.py
 def joern_create(joern_path, in_path, out_path, cpg_files):
     joern_process = subprocess.Popen(["./" + joern_path + "joern"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     json_files = []
@@ -65,6 +69,7 @@ def joern_create(joern_path, in_path, out_path, cpg_files):
     return json_files
 
 
+# Used in run.py
 def json_process(in_path, json_file):
     if os.path.exists(in_path+json_file):
         with open(in_path+json_file) as jf:
